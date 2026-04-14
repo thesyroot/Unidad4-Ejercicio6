@@ -29,7 +29,8 @@ public class MovimientoStock {
     private Long id;
 
     @Column(nullable = false)
-    private Long cantidad = 0L;
+    @Builder.Default
+    private Long cantidad = Long.valueOf(0);
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

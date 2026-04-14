@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/insumos")
+@RequestMapping("/productos/estanteria/")
 @AllArgsConstructor
 public class PrecioUpdateController {
 

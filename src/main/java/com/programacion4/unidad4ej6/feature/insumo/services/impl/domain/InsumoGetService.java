@@ -1,6 +1,5 @@
 package com.programacion4.unidad4ej6.feature.insumo.services.impl.domain;
 
-import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
@@ -9,7 +8,7 @@ import com.programacion4.unidad4ej6.feature.insumo.dtos.response.InsumoResponseD
 import com.programacion4.unidad4ej6.feature.insumo.mappers.InsumoMapper;
 import com.programacion4.unidad4ej6.feature.insumo.services.interfaces.commons.IInsumoFindByIdService;
 
-@Service
+
 @AllArgsConstructor
 public class InsumoGetService implements IInsumoGetService {
     

@@ -35,14 +35,4 @@ public class InsumoMapper {
                 .build();
     }
 
-    public static Insumo toEntity(InsumoCreateDTO insumoCreateDTO) {
-        return Insumo.builder()
-                .nombre(insumoCreateDTO.getNombre())
-                .codigoInterno(insumoCreateDTO.getCodigoInterno())
-                .stockActual(0L)
-                .activo(true)
-                .historialPrecios(new ArrayList<HistorialPrecio>())
-                .movimientosStock(new ArrayList<MovimientoStock>())
-                .build();
-    }
 }

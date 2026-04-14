@@ -35,15 +35,19 @@ public class Insumo {
     private String codigoInterno;
 
     @Column(nullable = false)
-    private Long stockActual = 0L;
+    @Builder.Default
+    private Long stockActual = Long.valueOf(0);
 
     @Column(nullable = false)
-    private Boolean activo = true;
+    @Builder.Default
+    private Boolean activo = Boolean.TRUE;
 
     @OneToMany(mappedBy = "insumo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<HistorialPrecio> historialPrecios = new ArrayList<>();
 
     @OneToMany(mappedBy = "insumo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<MovimientoStock> movimientosStock = new ArrayList<>();
 
     public void changeStatus() {

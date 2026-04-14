@@ -1,4 +1,4 @@
-package com.programacion4.unidad4ej6.feature.insumo.controllers.delete;
+package com.programacion4.unidad4ej6.feature.insumo.controllers.get;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +10,7 @@ import com.programacion4.unidad4ej6.config.BaseResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+import com.programacion4.unidad4ej6.feature.insumo.dtos.response.InsumoResponseDTO;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -19,7 +20,7 @@ public class InsumoDeleteController {
     private final IInsumoDeleteService insumoDeleteService;
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<BaseResponse<Void>> deleteInsumo(
+    public ResponseEntity<BaseResponse<InsumoResponseDTO>> deleteInsumo(
         @PathVariable Long id
     ) {
         insumoDeleteService.deleteInsumo(id);

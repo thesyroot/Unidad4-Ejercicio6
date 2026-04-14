@@ -18,11 +18,13 @@ public class MovimientoStockMapper {
     }
 
     public static MovimientoStock toEntity(MovimientoStockDTO dto, Insumo insumo) {
-        return MovimientoStock.builder()
+        MovimientoStock movimientoStock = MovimientoStock.builder()
                 .cantidad(dto.getCantidad())
                 .tipo(dto.getTipoMovimiento())
                 .fecha(LocalDateTime.now())
                 .insumo(insumo)
                 .build();
+
+        return new MovimientoStock();
     }
 }

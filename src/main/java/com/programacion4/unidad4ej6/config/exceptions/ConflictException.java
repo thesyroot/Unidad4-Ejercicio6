@@ -10,6 +10,6 @@ public class ConflictException extends CustomException {
     }
 
     public ConflictException(String message, List<String> errors) {
-        super(message, HttpStatus.CONFLICT, errors);
+        super(message, HttpStatus.BAD_REQUEST, errors);
     }
 }

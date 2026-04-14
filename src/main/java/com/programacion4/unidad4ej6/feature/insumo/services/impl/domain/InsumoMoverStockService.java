@@ -1,8 +1,7 @@
 package com.programacion4.unidad4ej6.feature.insumo.services.impl.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import lombok.AllArgsConstructor;
 
 import com.programacion4.unidad4ej6.feature.insumo.services.interfaces.domain.IInsumoMoverStockService;
 import com.programacion4.unidad4ej6.config.exceptions.BadRequestException;
@@ -16,12 +15,13 @@ import com.programacion4.unidad4ej6.feature.insumo.mappers.MovimientoStockMapper
 import com.programacion4.unidad4ej6.feature.insumo.models.TipoMovimiento;
 
 @Service
-@AllArgsConstructor
 public class InsumoMoverStockService implements IInsumoMoverStockService {
     
-    private final IInsumoFindByIdService insumoFindByIdService;
+    @Autowired
+    private IInsumoFindByIdService insumoFindByIdService;
 
-    private final IInsumoRepository insumoRepository;
+    @Autowired
+    private IInsumoRepository insumoRepository;
 
     @Override
     public MovimientoStockResponseDTO moverStock(Long id, MovimientoStockDTO dto) {

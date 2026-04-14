@@ -1,5 +1,7 @@
 package com.programacion4.unidad4ej6.feature.insumo.services.impl.domain;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -9,6 +11,7 @@ import com.programacion4.unidad4ej6.feature.insumo.dtos.request.InsumoCreateDTO;
 import com.programacion4.unidad4ej6.feature.insumo.dtos.response.InsumoResponseDTO;
 import com.programacion4.unidad4ej6.feature.insumo.mappers.InsumoMapper;
 import com.programacion4.unidad4ej6.feature.insumo.models.Insumo;
+import com.programacion4.unidad4ej6.feature.insumo.models.MovimientoStock;
 import com.programacion4.unidad4ej6.feature.insumo.repositories.IInsumoRepository;
 import com.programacion4.unidad4ej6.feature.insumo.mappers.HistorialPrecioMapper;
 import com.programacion4.unidad4ej6.feature.insumo.models.HistorialPrecio;
@@ -20,7 +23,9 @@ import com.programacion4.unidad4ej6.config.exceptions.ConflictException;
 public class InsumoCreateService implements IInsumoCreateService {
     
     private final IInsumoRepository insumoRepository;
+
     private final IInsumoExistsByCodigoInternoService insumoExistsByCodigoInternoService;
+    
     @Override
     public InsumoResponseDTO createInsumo(InsumoCreateDTO dto) {
 
@@ -28,7 +33,7 @@ public class InsumoCreateService implements IInsumoCreateService {
             throw new ConflictException("El código interno ya esta registrado");
         }
 
-        Insumo insumo = InsumoMapper.toEntity(dto);
+        Insumo insumo = toEntity(dto);
 
         HistorialPrecio historialPrecio = HistorialPrecioMapper.toEntity(dto.getPrecio(), insumo);
 
@@ -38,5 +43,16 @@ public class InsumoCreateService implements IInsumoCreateService {
         Insumo insumoGuardado = insumoRepository.save(insumo);
 
         return InsumoMapper.toResponseDTO(insumoGuardado);
+    }
+
+    public Insumo toEntity(InsumoCreateDTO insumoCreateDTO) {
+        return Insumo.builder()
+                .nombre(insumoCreateDTO.getNombre())
+                .codigoInterno(insumoCreateDTO.getCodigoInterno())
+                .stockActual(0L)
+                .activo(true)
+                .historialPrecios(new ArrayList<HistorialPrecio>())
+                .movimientosStock(new ArrayList<MovimientoStock>())
+                .build();
     }
 }

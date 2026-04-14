@@ -1,4 +1,4 @@
-package com.programacion4.unidad4ej6.feature.insumo.controllers.get;
+package com.programacion4.unidad4ej6.feature.insumo.controllers.delete;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
