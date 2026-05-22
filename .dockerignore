@@ -1,0 +1,11 @@
+target/
+*.jar
+.idea/
+*.iml
+.mvn/
+mvnw
+mvnw.cmd
+.git/
+.gitignore
+.gitattributes
+README.md
