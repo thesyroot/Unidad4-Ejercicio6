@@ -1,9 +1,9 @@
 FROM eclipse-temurin:21-jdk-alpine AS builder
 
 WORKDIR /app
-    COPY mvnw pom.xml ./
-    COPY .mvn .mvn
-    RUN chmod +x mvnw && ./mvnw dependency:go-offline -B
+COPY mvnw pom.xml ./
+COPY .mvn .mvn
+RUN chmod +x mvnw && ./mvnw dependency:go-offline -B
 
 COPY src src
 RUN ./mvnw package -DskipTests -B
@@ -11,7 +11,8 @@ RUN ./mvnw package -DskipTests -B
 FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup && \
+    mkdir -p /app/data && chown appuser:appgroup /app/data
 
 COPY --from=builder /app/target/*.jar app.jar
 
